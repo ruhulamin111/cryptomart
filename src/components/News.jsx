@@ -6,9 +6,8 @@ import { useGetCryptoNewsQuery } from '../services/cryptoNewsAPI';
 const { Text, Title } = Typography;
 
 const News = ({ simplified }) => {
-    const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory: 'Cryptocurrency', count: simplified ? 10 : 100 })
+    const { data: cryptoNews } = useGetCryptoNewsQuery()
     if (!cryptoNews?.value) return 'Loading...';
-    console.log(cryptoNews)
 
     return (
         <>
@@ -19,7 +18,7 @@ const News = ({ simplified }) => {
                             <a target='_blank' href={news.url} rel="noreferrer">
                                 <div className='news-image-container'>
                                     <Title className='news-title' level={4}>{news.name.slice(0, 20)}</Title>
-                                    <img src={news?.image?.thumbnail?.contentUrl || 'no image'} alt="" width={'150px'} height={'100px'} />
+                                    <img src={news?.image?.thumbnail?.contentUrl || 'no image'} alt="" style={{ maxWidth: '200px', maxHeight: '100px' }} />
                                 </div>
                                 <p>
                                     {news.description > 100 ? `${news.description.subString(0, 100)}...` : news.description}
@@ -27,8 +26,9 @@ const News = ({ simplified }) => {
                                 <div className='provider-container'>
                                     <div>
                                         <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl} />
-                                        <Text>{moment(news.datePublished).startOf('ss').fromNow()}</Text>
+                                        <Text className='provider-name'>{news?.provider[0]?.name}</Text>
                                     </div>
+                                    <Text>{moment(news.datePublished).startOf('ss').fromNow()}</Text>
                                 </div>
                             </a>
                         </Card>
