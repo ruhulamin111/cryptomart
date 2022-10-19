@@ -1,7 +1,7 @@
 import millify from 'millify'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoAPI';
+import { useGetCryptoDetailsQuery } from '../services/cryptoAPI';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Col, Row, Select, Typography } from 'antd';
 import HTMLReactParser from 'html-react-parser';
@@ -15,6 +15,7 @@ const CryptoDetails = () => {
     const cryptoDetails = data?.data?.coin;
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
     if (isFetching) return 'Loading...'
+    console.log(timePeriod)
 
     const stats = [
         { title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`, icon: <DollarCircleOutlined /> },

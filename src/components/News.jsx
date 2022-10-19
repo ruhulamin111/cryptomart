@@ -2,7 +2,6 @@ import { Avatar, Card, Col, Row, Typography } from 'antd'
 import moment from 'moment';
 import React from 'react'
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsAPI';
-
 const { Text, Title } = Typography;
 
 const News = ({ simplified }) => {
