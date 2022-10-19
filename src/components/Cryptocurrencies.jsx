@@ -14,7 +14,6 @@ const Cryptocurrencies = ({ simplified }) => {
         const fillteredData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
         setCryptos(fillteredData)
     }, [cryptosList, searchTerm]);
-    console.log(cryptos);
 
 
     if (isFetching) return 'Loading...';
